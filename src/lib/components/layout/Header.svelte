@@ -33,6 +33,7 @@
 						>
 							<li><a href="/germplasm/overview">Overview</a></li>
 							<li><a href="/germplasm">Tabular</a></li>
+							<li><a href="/divbrowse">Genotyping</a></li>
 						</ul>
 					</div>
 					<div class="dropdown dropdown-end hover:text-accent">
