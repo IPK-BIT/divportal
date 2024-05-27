@@ -20,7 +20,7 @@
 					</li>
 					<div class="dropdown dropdown-end hover:text-accent">
 						<div
-							class={$page.route.id?.startsWith('/germplasm') ? 'text-accent' : ''}
+							class={$page.route.id?.startsWith('/germplasm')||$page.route.id?.startsWith('/divbrowse') ? 'text-accent' : ''}
 							tabindex="0"
 							role="button"
 						>

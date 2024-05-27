@@ -285,9 +285,9 @@ async function numericalScale(base_url, variable, collection, authorization, axi
 		/**
 		 * @type string|number[]
 		 */
-		let fillcolor = color.slice(5,-1).split(',').map(parseFloat)
-		fillcolor[3] = .42
-		fillcolor = `rgba(${fillcolor.join(',')})`
+		let fillcolor = color.slice(5, -1).split(',').map(parseFloat);
+		fillcolor[3] = 0.42;
+		fillcolor = `rgba(${fillcolor.join(',')})`;
 
 		values = values.sort((a, b) => a - b);
 		let q1 = values[Math.floor(values.length * 0.25)];
@@ -338,13 +338,13 @@ async function numericalScale(base_url, variable, collection, authorization, axi
 				}
 			},
 			stats: {
-				Min: Math.round(Math.min(...values)*100)/100,
-				Max: Math.round(Math.max(...values)*100)/100,
-				Q1: Math.round(q1*100)/100,
-				Q3: Math.round(q3*100)/100,
-				Median: Math.round(values[Math.floor(values.length / 2)]*100)/100,
-				'Lower Fence': Math.round(lowerFence*100)/100,
-				'Upper Fence': Math.round(upperFence*100)/100
+				Min: Math.round(Math.min(...values) * 100) / 100,
+				Max: Math.round(Math.max(...values) * 100) / 100,
+				Q1: Math.round(q1 * 100) / 100,
+				Q3: Math.round(q3 * 100) / 100,
+				Median: Math.round(values[Math.floor(values.length / 2)] * 100) / 100,
+				'Lower Fence': Math.round(lowerFence * 100) / 100,
+				'Upper Fence': Math.round(upperFence * 100) / 100
 			}
 		};
 

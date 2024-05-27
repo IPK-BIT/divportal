@@ -41,7 +41,10 @@
 	 */
 	let stats = {};
 
+	let loading = false;
+
 	async function loadPlot() {
+		loading = true;
 		const style = getComputedStyle(document.documentElement);
 		let colorValue = style.getPropertyValue('--bc');
 		const rgb = await cssColor_to_rgba255Color(`lch(${colorValue})`);
@@ -68,6 +71,7 @@
 		const queryParams = new URLSearchParams(params);
 		const response = await fetch(`/observations/plots?${queryParams.toString()}`);
 		const data = await response.json();
+		loading = false;
 
 		stats = data.stats;
 		//@ts-ignore
@@ -102,6 +106,10 @@
 	</select>
 	{#if selectedVariable != ''}
 		<div class="flex flex-row w-full">
+			{#if loading}
+				<span class="loading loading-dots text-secondary loading-lg z-10 absolute left-1/4 top-1/4"
+				></span>
+			{/if}
 			<div class="w-1/2 h-full bg-base-100" id="plot"></div>
 			<div class="w-1/2 p-2">
 				<h1 class="text-lg font-semibold">Statistics</h1>

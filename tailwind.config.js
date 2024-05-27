@@ -62,7 +62,7 @@ module.exports = {
 			// },
 			'lemonade',
 			'forest',
-			'coffee',
+			'coffee'
 		]
 	}
 };

@@ -1,0 +1,17 @@
+{
+	"servers": [
+		{
+			"name": "BRIDGE",
+			"url": "https://mira.ipk-gatersleben.de/bridge"
+		},
+		{
+			"name": "SHAPE",
+			"url": "https://mira.ipk-gatersleben.de/shape",
+			"auth": "basic"
+		},
+		{
+			"name": "Test Server",
+			"url": "https://mira.ipk-gatersleben.de/test"
+		}
+	]
+}

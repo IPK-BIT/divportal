@@ -2,7 +2,6 @@
  * @param {string} string
  */
 export async function cssColor_to_rgba255Color(string) {
-	console.log('string:', string);
 	const canvas = document.createElement('canvas');
 	canvas.width = canvas.height = 1;
 	const ctx = canvas.getContext('2d', { willReadFrequently: true });
