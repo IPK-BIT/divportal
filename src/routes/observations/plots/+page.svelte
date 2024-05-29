@@ -2,6 +2,7 @@
 	import { api, updateCreds } from '$lib/stores/apiconfig';
 	import { onMount } from 'svelte';
 	import { cssColor_to_rgba255Color } from '$lib/scripts/colorconversion';
+	import ListSelect from '$lib/components/lists/ListSelect.svelte';
 
 	onMount(async () => {
 		await updateCreds();
@@ -13,9 +14,6 @@
 		let response = await fetch(`/variables?${queryParams.toString()}`);
 		let data = await response.json();
 		variables = data.result.data;
-
-		response = await fetch(`/collections`);
-		collections = await response.json();
 	});
 
 	/**
@@ -30,11 +28,7 @@
 	/**
 	 * @type {string}
 	 */
-	let selectedCollection = '';
-	/**
-	 * @type {any[]}
-	 */
-	let collections = [];
+	let selectedList = '';
 
 	/**
 	 * @type {Object<string, any>}
@@ -64,9 +58,9 @@
 			axisColor: `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${rgb[3]})`,
 			color: `rgba(${primary[0]}, ${primary[1]}, ${primary[2]}, ${primary[3]})`
 		};
-		if (selectedCollection !== '') {
+		if (selectedList !== '') {
 			// @ts-ignore
-			params.collection = selectedCollection;
+			params.collection = selectedList;
 		}
 		const queryParams = new URLSearchParams(params);
 		const response = await fetch(`/observations/plots?${queryParams.toString()}`);
@@ -94,16 +88,7 @@
 			</option>
 		{/each}
 	</select>
-	<select
-		class="select select-bordered select-sm"
-		bind:value={selectedCollection}
-		on:change={loadPlot}
-	>
-		<option value="">No Collection</option>
-		{#each collections as collection}
-			<option value={collection.listDbId}>{collection.listName}</option>
-		{/each}
-	</select>
+	<ListSelect bind:selectedList on:change={loadPlot} />
 	{#if selectedVariable != ''}
 		<div class="flex flex-row w-full">
 			{#if loading}

@@ -1,9 +1,17 @@
 <script>
-	import { steps } from '$lib/stores/collectionupload';
+	// import { steps } from '$lib/stores/collectionupload';
 	import ComponentWrapper from '$lib/components/modals/ComponentWrapper.svelte';
-	import Upload from './collection/Upload.svelte';
-	import BasicInformation from './collection/BasicInformation.svelte';
+	import Upload from './list/Upload.svelte';
+	import BasicInformation from './list/BasicInformation.svelte';
 	import { createEventDispatcher } from 'svelte';
+	import GermplasmSelection from './gwas/GermplasmSelection.svelte';
+	import PhenotypeFilter from './gwas/PhenotypeFilter.svelte';
+	import GenotypeFilter from './gwas/GenotypeFilter.svelte';
+	import ParamOverview from './gwas/ParamOverview.svelte';
+
+	export let steps;
+	export let finishBtnText = 'Finish';
+	export let validate = ()=>true;
 
 	let currentStep = 0;
 
@@ -12,14 +20,20 @@
 	 */
 	const components = {
 		basic: BasicInformation,
-		upload: Upload
+		upload: Upload,
+		germplasm: GermplasmSelection,
+		phenotype: PhenotypeFilter,
+		genotype: GenotypeFilter,
+		overview: ParamOverview
 	};
 
 	const eventdispatcher = createEventDispatcher();
 
 	function finish() {
-		currentStep = 0;
-		eventdispatcher('finish', {});
+		if (validate()) {
+			currentStep = 0;
+			eventdispatcher('finish', {});	
+		}
 	}
 </script>
 
@@ -53,7 +67,7 @@
 				}}>Next</button
 			>
 		{:else}
-			<button class="btn btn-primary btn-sm float-right" on:click={finish}>Finish</button>
+			<button class="btn btn-primary btn-sm float-right" on:click={finish}>{finishBtnText}</button>
 		{/if}
 	</div>
 </section>

@@ -1,5 +1,5 @@
 <script>
-	import { collection } from '$lib/stores/collectionupload';
+	import { list } from '$lib/stores/listupload';
 	import { onMount } from 'svelte';
 
 	export let config = {
@@ -7,22 +7,22 @@
 	};
 
 	onMount(() => {
-		if (!$collection.color) {
-			$collection.color = config.color;
+		if (!$list.color) {
+			$list.color = config.color;
 		}
 	});
 </script>
 
 <form class="space-y-2">
 	<div>
-		<label for="collectionName" class="block text-sm font-medium">Collection Name</label>
+		<label for="collectionName" class="block text-sm font-medium">List Name</label>
 		<input
 			id="collectionName"
 			type="text"
 			name="collectionName"
 			placeholder="Enter Collection Name"
-			class="mt-1 block w-full rounded-md sm:text-sm p-2"
-			bind:value={$collection.name}
+			class="mt-1 block w-full rounded-md sm:text-sm p-2 text-base-200"
+			bind:value={$list.name}
 		/>
 	</div>
 	<div>
@@ -31,19 +31,18 @@
 			id="description"
 			name="description"
 			rows="4"
-			class="mt-1 block w-full rounded-md shadow-sm sm:text-sm p-2"
-			bind:value={$collection.description}
+			class="mt-1 block w-full rounded-md shadow-sm sm:text-sm p-2 text-base-200"
+			bind:value={$list.description}
 		></textarea>
 	</div>
 	<div>
-		<label for="colorPicker" class="block text-sm font-medium text-gray-700">Collection Color</label
-		>
+		<label for="colorPicker" class="block text-sm font-medium">List Color</label>
 		<input
 			id="colorPicker"
 			type="color"
 			name="color"
 			class="mt-1 block w-full rounded-md sm:text-sm"
-			bind:value={$collection.color}
+			bind:value={$list.color}
 		/>
 	</div>
 </form>

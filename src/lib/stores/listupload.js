@@ -25,7 +25,7 @@ export const steps = readable([
 	}
 ]);
 
-export let collection = writable({
+export let list = writable({
 	name: '',
 	description: '',
 	color: '',

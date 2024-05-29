@@ -4,7 +4,7 @@
 	/**
 	 * @type {{id: string}[]}
 	 */
-	 export let samples = [];
+	export let samples = [];
 
 	let browser;
 	onMount(async () => {

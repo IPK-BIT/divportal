@@ -1,7 +1,8 @@
 <script>
+	import { steps } from '$lib/stores/listupload';
 	import Modal from '$lib/components/basic/Modal.svelte';
 	import Frame from '$lib/components/modals/Frame.svelte';
-	import { collection } from '$lib/stores/collectionupload';
+	import { list } from '$lib/stores/listupload';
 	import { Save, TrashCan } from 'carbon-icons-svelte';
 	import { onMount } from 'svelte';
 
@@ -13,29 +14,29 @@
 	/**
 	 * @type {any}
 	 */
-	let customCollModal;
+	let customListModal;
 
 	onMount(async () => {
 		await loadLists();
-		customCollModal = document.getElementById('my_modal_1');
+		customListModal = document.getElementById('my_modal_1');
 	});
 
 	async function createList() {
 		const col = {
-			listName: $collection.name,
-			listDescription: $collection.description,
-			listColor: $collection.color,
-			data: $collection.data
+			listName: $list.name,
+			listDescription: $list.description,
+			listColor: $list.color,
+			data: $list.data
 		};
 
-		$collection = {
+		$list = {
 			name: '',
 			description: '',
 			color: '',
 			data: []
 		};
 
-		const response = await fetch('/collections', {
+		const response = await fetch('/lists', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -47,7 +48,7 @@
 	}
 
 	async function loadLists() {
-		const response = await fetch('/collections');
+		const response = await fetch('/lists');
 		lists = await response.json();
 	}
 
@@ -55,7 +56,7 @@
 	 * @param {string} id
 	 */
 	async function deleteList(id) {
-		const response = await fetch(`/collections?listDbId=${id}`, {
+		const response = await fetch(`/lists?listDbId=${id}`, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
@@ -71,7 +72,7 @@
 	 */
 	async function updateList(id) {
 		const list = lists.find((l) => l.listDbId === id);
-		const response = await fetch(`/collections?listDbId=${id}`, {
+		const response = await fetch(`/lists?listDbId=${id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json'
@@ -87,7 +88,7 @@
 	 * @param {string} collectionName
 	 */
 	async function loadPredefined(collectionName) {
-		const response = await fetch('/collections', {
+		const response = await fetch('/lists', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -122,19 +123,19 @@
 		</button>
 		<button
 			class="btn btn-primary btn-sm"
-			on:click={() => customCollModal && customCollModal.showModal()}
+			on:click={() => customListModal && customListModal.showModal()}
 		>
-			Load Custom Collection
+			Load Custom List
 		</button>
 	</div>
 
 	<div>
 		<table class="table">
 			<thead>
-				<th>Collection Name</th>
+				<th>List Name</th>
 				<th>Description</th>
-				<th>Collection Size</th>
-				<th>Collection Color</th>
+				<th>List Size</th>
+				<th>List Color</th>
 				<th>Actions</th>
 			</thead>
 			<tbody>
@@ -171,10 +172,11 @@
 	</div>
 </section>
 
-<Modal id="my_modal_1" title="Collection Upload">
+<Modal id="my_modal_1" title="List Upload">
 	<Frame
+		{steps}
 		on:finish={() => {
-			customCollModal.close();
+			customListModal.close();
 			createList();
 		}}
 	/>

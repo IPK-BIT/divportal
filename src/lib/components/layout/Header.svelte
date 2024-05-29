@@ -20,7 +20,10 @@
 					</li>
 					<div class="dropdown dropdown-end hover:text-accent">
 						<div
-							class={$page.route.id?.startsWith('/germplasm')||$page.route.id?.startsWith('/divbrowse') ? 'text-accent' : ''}
+							class={$page.route.id?.startsWith('/germplasm') ||
+							$page.route.id?.startsWith('/divbrowse')
+								? 'text-accent'
+								: ''}
 							tabindex="0"
 							role="button"
 						>
@@ -38,7 +41,10 @@
 					</div>
 					<div class="dropdown dropdown-end hover:text-accent">
 						<div
-							class={$page.route.id?.startsWith('/observations') ? 'text-accent' : ''}
+							class={$page.route.id?.startsWith('/observations') ||
+							$page.route.id?.startsWith('/variables')
+								? 'text-accent'
+								: ''}
 							tabindex="0"
 							role="button"
 						>
@@ -51,13 +57,27 @@
 						>
 							<li><a href="/observations">Tabular</a></li>
 							<li><a href="/observations/plots">Plots</a></li>
+							<li><a href="/variables">Variables</a></li>
 						</ul>
 					</div>
-					<li class="hover:text-accent {$page.route.id === '/collections' ? 'text-accent' : ''}">
-						<a href="/collections">Collections</a>
-					</li>
-					<li class="hover:text-accent {$page.route.id === '/variables' ? 'text-accent' : ''}">
-						<a href="/variables">Variables</a>
+					<div class="dropdown dropdown-end hover:text-accent">
+						<div
+							class={$page.route.id?.startsWith('/analysis') ? 'text-accent' : ''}
+							tabindex="0"
+							role="button"
+						>
+							Analysis
+						</div>
+						<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+						<ul
+							tabindex="0"
+							class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 text-[oklch(var(--bc))]"
+						>
+							<li><a href="/analysis/gwas">GWAS</a></li>
+						</ul>
+					</div>
+					<li class="hover:text-accent {$page.route.id === '/lists' ? 'text-accent' : ''}">
+						<a href="/lists">Lists</a>
 					</li>
 					<li class="hover:text-accent {$page.route.id === '/settings' ? 'text-accent' : ''}">
 						<a href="/settings"><Settings size={20} /></a>

@@ -1,10 +1,12 @@
-const public_paths = ['/', '/about', '/contact', '/carousel', '/partners'];
+const public_paths = ['/', '/about', '/contact', '/carousel', '/partners', '/lists/*'];
 
 /**
  * @param {string} path
  */
 function isPathAllowed(path) {
-	return public_paths.some((allowedPath) => path === allowedPath);
+	return public_paths.some((allowedPath) =>
+		RegExp(`^${allowedPath.replace(/\*/g, '.*')}$`).test(path)
+	);
 }
 
 export const handle = async ({ event, resolve }) => {

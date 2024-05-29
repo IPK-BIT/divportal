@@ -10,16 +10,16 @@
 
 	onMount(async () => {
 		await updateCreds();
-		
+
 		const queryParams = new URLSearchParams({
 			server: $api.base_url,
 			authorization: $api.basic_auth ? $api.basic_auth : ''
 		});
 		const response = await fetch(`/divbrowse?${queryParams.toString()}`);
 		samples = await response.json();
-	})
+	});
 </script>
 
 {#if samples.length > 0}
-	<DivBrowse bind:samples/>
+	<DivBrowse bind:samples />
 {/if}

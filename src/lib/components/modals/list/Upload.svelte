@@ -1,5 +1,5 @@
 <script>
-	import { collection } from '$lib/stores/collectionupload';
+	import { list } from '$lib/stores/listupload';
 
 	export const config = {};
 
@@ -15,9 +15,7 @@
 					const csvData = e.target.result;
 					// @ts-ignore
 					const lines = csvData.split('\n');
-					$collection.data = lines.map((/** @type {string} */ line) =>
-						line.trim().replace(/\r|\n/g, '')
-					);
+					$list.data = lines.map((/** @type {string} */ line) => line.trim().replace(/\r|\n/g, ''));
 				} catch (error) {
 					console.error('Error processing CSV:', error);
 				}
@@ -40,7 +38,7 @@
 </div>
 <div>
 	<label for="preview" class="block text-sm font-medium">Preview</label>
-	{#if $collection.data.length === 0}
+	{#if $list.data.length === 0}
 		<div id="preview" class="skeleton h-32 w-full"></div>
 	{:else}
 		<table class="table w-full">
@@ -50,7 +48,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				{#each $collection.data as row, i}
+				{#each $list.data as row, i}
 					{#if i < 5}
 						<tr>
 							<td>{row}</td>
