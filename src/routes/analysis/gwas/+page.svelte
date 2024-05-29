@@ -37,26 +37,24 @@
 		}
 		return (
 			validationErrors.length === 0 ||
-			validationErrors.every((/** @type {{ messageType: string; }} */ error) => error.messageType === 'INFO')
+			validationErrors.every(
+				(/** @type {{ messageType: string; }} */ error) => error.messageType === 'INFO'
+			)
 		);
 	}
 
 	function downloadParams() {
-		// if (validate()) {
-			$params.list = $params.prefix + '/' + $params.list;
-			// @ts-ignore
-			$params.prefix = undefined;
-			const paramsJson = JSON.stringify($params, undefined, 2);
-			const blob = new Blob([paramsJson], { type: 'application/json' });
-			const url = URL.createObjectURL(blob);
-			const link = document.createElement('a');
-			link.href = url;
-			link.download = 'params.json';
-			link.click();
-			reset();
-		// } else {
-		// 	console.log(validationErrors);
-		// }
+		$params.list = $params.prefix + '/' + $params.list;
+		// @ts-ignore
+		$params.prefix = undefined;
+		const paramsJson = JSON.stringify($params, undefined, 2);
+		const blob = new Blob([paramsJson], { type: 'application/json' });
+		const url = URL.createObjectURL(blob);
+		const link = document.createElement('a');
+		link.href = url;
+		link.download = 'params.json';
+		link.click();
+		reset();
 	}
 
 	onDestroy(() => {
@@ -66,7 +64,7 @@
 
 <section class="flex justify-center p-8">
 	<div class="card bg-base-200 w-1/3 p-2">
-		<Frame {steps} on:finish={downloadParams} finishBtnText="Download" validate={validate}/>
+		<Frame {steps} on:finish={downloadParams} finishBtnText="Download" {validate} />
 	</div>
 </section>
 

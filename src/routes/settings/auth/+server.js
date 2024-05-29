@@ -15,7 +15,6 @@ export async function GET({ url }) {
 
 export async function POST({ request }) {
 	const body = await request.json();
-	console.log(body);
 
 	db.prepare('DELETE FROM auth WHERE server = ?').run(body.server);
 

@@ -20,18 +20,14 @@
 	 * @param {string} dir
 	 */
 	function paginate(dir) {
-		console.log(dir);
 		if (table) {
 			if (dir === 'next') {
-				console.log(table.pagination.currentPage);
 				table.pagination.currentPage + 1 < table.pagination.totalPages
 					? table.pagination.currentPage++
 					: null;
-				console.log(table.pagination.currentPage);
 			} else {
 				table.pagination.currentPage - 1 >= 0 ? table.pagination.currentPage-- : null;
 			}
-			console.log(table.pagination);
 			eventDispatcher('loadTable', { page: table.pagination.currentPage });
 		}
 	}

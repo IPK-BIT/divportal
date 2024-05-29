@@ -63,7 +63,6 @@
 			}
 		});
 		const data = await response.json();
-		console.log(data);
 		loadLists();
 	}
 
@@ -80,7 +79,6 @@
 			body: JSON.stringify(list)
 		});
 		const data = await response.json();
-		console.log(data);
 		loadLists();
 	}
 

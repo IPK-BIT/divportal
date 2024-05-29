@@ -4,6 +4,8 @@
 	import { cssColor_to_rgba255Color } from '$lib/scripts/colorconversion';
 	import ListSelect from '$lib/components/lists/ListSelect.svelte';
 
+	//TODO: use components and imported functions instead of doing the math in the +page file
+
 	onMount(async () => {
 		await updateCreds();
 

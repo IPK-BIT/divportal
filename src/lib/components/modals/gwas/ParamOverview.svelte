@@ -6,8 +6,8 @@
 	onMount(() => {
 		$params.baseURL = $api.base_url;
 		const server = $appConfig.servers.filter((server) => server.url == $api.base_url);
-		if (server[0].auth) {
-			$params.authorization = $api.basic_auth;
+		if (server[0].auth === 'basic') {
+			$params.authorization = `Basic ${$api.basic_auth}`;
 		}
 	});
 </script>
@@ -65,7 +65,7 @@
 			<tbody>
 				<tr>
 					<th>VCF File</th>
-					<td>{$params.vcfFile}</td>
+					<td>{$params.vcf}</td>
 				</tr>
 				<tr>
 					<th>Filter MAF</th>

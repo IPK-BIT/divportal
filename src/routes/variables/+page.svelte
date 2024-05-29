@@ -19,7 +19,6 @@
 		});
 		const response = await fetch(`/variables?${queryParams.toString()}`);
 		const data = await response.json();
-		console.log(data.result.data);
 		variables = data.result.data;
 		traitClasses = [...new Set(variables.map((v) => v.trait.traitClass))];
 	});

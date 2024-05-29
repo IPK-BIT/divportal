@@ -9,7 +9,6 @@
 	let table = undefined;
 
 	async function loadTable() {
-		console.log(table?.pagination);
 		const queryParams = new URLSearchParams({
 			server: $api.base_url,
 			page: (table?.pagination.currentPage ? table.pagination.currentPage : 0).toString(),
@@ -18,7 +17,6 @@
 		});
 		const response = await fetch(`/germplasm?${queryParams.toString()}`);
 		table = await response.json();
-		console.log(table?.pagination);
 	}
 
 	onMount(async () => {

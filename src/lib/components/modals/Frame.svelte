@@ -11,7 +11,7 @@
 
 	export let steps;
 	export let finishBtnText = 'Finish';
-	export let validate = ()=>true;
+	export let validate = () => true;
 
 	let currentStep = 0;
 
@@ -32,7 +32,7 @@
 	function finish() {
 		if (validate()) {
 			currentStep = 0;
-			eventdispatcher('finish', {});	
+			eventdispatcher('finish', {});
 		}
 	}
 </script>

@@ -43,7 +43,6 @@ export async function GET({ url }) {
 
 		return json(table);
 	} else {
-		console.log(response.statusText);
 		return json({ error: 'Failed to fetch data' });
 	}
 }

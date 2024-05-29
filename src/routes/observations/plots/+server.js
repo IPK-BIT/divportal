@@ -27,7 +27,8 @@ export async function GET({ url }) {
 				url.searchParams.get('collection'),
 				url.searchParams.get('authorization'),
 				url.searchParams.get('axisColor'),
-				url.searchParams.get('color')
+				url.searchParams.get('color'),
+				url.searchParams.get('includeOutliers')
 			);
 		} else if (variable.scale.dataType === 'Nominal') {
 			// @ts-ignore
@@ -38,7 +39,8 @@ export async function GET({ url }) {
 				url.searchParams.get('collection'),
 				url.searchParams.get('authorization'),
 				url.searchParams.get('axisColor'),
-				url.searchParams.get('color')
+				url.searchParams.get('color'),
+				url.searchParams.get('includeOutliers')
 			);
 		} else if (variable.scale.dataType === 'Numerical') {
 			// @ts-ignore
@@ -49,7 +51,8 @@ export async function GET({ url }) {
 				url.searchParams.get('collection'),
 				url.searchParams.get('authorization'),
 				url.searchParams.get('axisColor'),
-				url.searchParams.get('color')
+				url.searchParams.get('color'),
+				url.searchParams.get('includeOutliers')
 			);
 		}
 
@@ -65,8 +68,17 @@ export async function GET({ url }) {
  * @param {string} authorization
  * @param {string} axisColor
  * @param {string} color
+ * @param {string} includeOutliers
  */
-async function ordinalScale(base_url, variable, collection, authorization, axisColor, color) {
+async function ordinalScale(
+	base_url,
+	variable,
+	collection,
+	authorization,
+	axisColor,
+	color,
+	includeOutliers
+) {
 	let request_url = `${base_url}/brapi/v2/observations?observationVariableDbId=${variable.observationVariableDbId}`;
 
 	let collection_data;
@@ -136,7 +148,6 @@ async function ordinalScale(base_url, variable, collection, authorization, axisC
 			stats: stats
 		};
 	} catch (error) {
-		console.log(error);
 		return json({
 			data: [],
 			layout: {},
@@ -153,8 +164,17 @@ async function ordinalScale(base_url, variable, collection, authorization, axisC
  * @param {string} authorization
  * @param {string} axisColor
  * @param {string} color
+ * @param {string} includeOutliers
  */
-async function nominalScale(base_url, variable, collection, authorization, axisColor, color) {
+async function nominalScale(
+	base_url,
+	variable,
+	collection,
+	authorization,
+	axisColor,
+	color,
+	includeOutliers
+) {
 	let request_url = `${base_url}/brapi/v2/observations?observationVariableDbId=${variable.observationVariableDbId}`;
 
 	let collection_data;
@@ -239,7 +259,6 @@ async function nominalScale(base_url, variable, collection, authorization, axisC
 			stats: stats
 		};
 	} catch (error) {
-		console.log(error);
 		return json({ data: [], layout: {}, stats: {}, error: error });
 	}
 }
@@ -251,8 +270,17 @@ async function nominalScale(base_url, variable, collection, authorization, axisC
  * @param {string} authorization
  * @param {string} axisColor
  * @param {string} color
+ * @param {string} includeOutliers
  */
-async function numericalScale(base_url, variable, collection, authorization, axisColor, color) {
+async function numericalScale(
+	base_url,
+	variable,
+	collection,
+	authorization,
+	axisColor,
+	color,
+	includeOutliers
+) {
 	let request_url = `${base_url}/brapi/v2/observations?observationVariableDbId=${variable.observationVariableDbId}`;
 
 	let collection_data;
@@ -295,10 +323,18 @@ async function numericalScale(base_url, variable, collection, authorization, axi
 		let iqr = q3 - q1;
 		let lowerFence = q1 - 1.5 * iqr;
 		let upperFence = q3 + 1.5 * iqr;
+
+		// if (includeOutliers === 'false') {
+		// 	values = values.filter((value) => {
+		// 		return value > lowerFence && value < upperFence;
+		// 	});
+		// }
+
 		let boxPlotData = {
 			name: '',
 			type: 'violin',
 			y: values,
+			points: includeOutliers === 'false' ? false : 'outliers',
 			box: {
 				visible: true
 			},
@@ -409,7 +445,6 @@ async function numericalScale(base_url, variable, collection, authorization, axi
 		// 	stats: stats
 		// };
 	} catch (error) {
-		console.log(error);
 		return json({ data: [], layout: {}, stats: {}, error: error });
 	}
 }

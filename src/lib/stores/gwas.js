@@ -8,7 +8,7 @@ export const steps = readable([
 			{
 				type: 'germplasm',
 				config: {
-					prefix: 'http://localhost:5173/lists'
+					prefix: 'http://129.70.51.240/lists'
 				}
 			}
 		]
@@ -57,7 +57,7 @@ export const params = writable({
 	list: '',
 	variable: '',
 	includeOutliers: '',
-	vcfFile: '',
+	vcf: '',
 	filterMissing: '',
 	filterHeterozygous: '',
 	filterMAF: '',
@@ -71,7 +71,7 @@ export function reset() {
 		list: '',
 		variable: '',
 		includeOutliers: '',
-		vcfFile: '',
+		vcf: '',
 		filterMissing: '',
 		filterHeterozygous: '',
 		filterMAF: '',
