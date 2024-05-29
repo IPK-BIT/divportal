@@ -17,7 +17,7 @@
 	});
 
 	async function update() {
-		loadPlot(false, $params.variable, $params.list, null, $params.includeOutliers.toString());
+		loadPlot($params.variable, $params.list, $params.includeOutliers.toString());
 	}
 </script>
 

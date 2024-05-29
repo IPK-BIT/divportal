@@ -96,7 +96,6 @@
 
 <section class="p-4 space-y-2">
 	<h1 class="text-xl">Settings</h1>
-	<!-- TODO: persist theme selection in localstorage -->
 	<div role="tablist" class="tabs tabs-lifted">
 		<button
 			role="tab"

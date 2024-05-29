@@ -3,14 +3,11 @@ import { get } from 'svelte/store';
 import { cssColor_to_rgba255Color } from './colorconversion';
 
 /**
- * @param {boolean} loading
  * @param {string} selectedVariable
  * @param {string} selectedList
- * @param {any} stats
  * @param {string} includeOutliers
  */
-export async function loadPlot(loading, selectedVariable, selectedList, stats, includeOutliers) {
-	loading = true;
+export async function loadPlot(selectedVariable, selectedList, includeOutliers='true') {
 	const style = getComputedStyle(document.documentElement);
 	let colorValue = style.getPropertyValue('--bc');
 	const rgb = await cssColor_to_rgba255Color(`lch(${colorValue})`);
@@ -38,9 +35,8 @@ export async function loadPlot(loading, selectedVariable, selectedList, stats, i
 	const queryParams = new URLSearchParams(params);
 	const response = await fetch(`/observations/plots?${queryParams.toString()}`);
 	const data = await response.json();
-	loading = false;
 
-	stats = data.stats;
 	//@ts-ignore
 	Plotly.newPlot('plot', data.data, data.layout);
+	return data.stats;
 }
