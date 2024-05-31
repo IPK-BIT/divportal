@@ -1,5 +1,5 @@
 <script>
-	import VariableDisplay from '$lib/components/VariableDisplay.svelte';
+	import VariableDisplay from '$lib/components/variables/VariableDisplay.svelte';
 	import { onMount } from 'svelte';
 	import { api, updateCreds } from '$lib/stores/apiconfig';
 	/**

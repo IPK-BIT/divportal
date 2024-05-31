@@ -2,7 +2,7 @@ import { readable, writable } from 'svelte/store';
 
 export const steps = readable([
 	{
-		title: 'Collection Details',
+		title: 'List Details',
 		shortTitle: 'Basic',
 		components: [
 			{
@@ -25,6 +25,9 @@ export const steps = readable([
 	}
 ]);
 
+/**
+ * @type {import('svelte/store').Writable<{name:string, description: string, color: string, data:string[]}>}
+ */
 export let list = writable({
 	name: '',
 	description: '',

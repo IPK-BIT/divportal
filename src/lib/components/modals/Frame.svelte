@@ -8,6 +8,7 @@
 	import PhenotypeFilter from './gwas/PhenotypeFilter.svelte';
 	import GenotypeFilter from './gwas/GenotypeFilter.svelte';
 	import ParamOverview from './gwas/ParamOverview.svelte';
+	import Preset from './list/Preset.svelte';
 
 	export let steps;
 	export let finishBtnText = 'Finish';
@@ -24,7 +25,8 @@
 		germplasm: GermplasmSelection,
 		phenotype: PhenotypeFilter,
 		genotype: GenotypeFilter,
-		overview: ParamOverview
+		overview: ParamOverview,
+		preset: Preset
 	};
 
 	const eventdispatcher = createEventDispatcher();

@@ -1,5 +1,6 @@
 import { get, writable } from 'svelte/store';
 
+//TODO: Restructure to be buildable by yamlscript
 export const appConfig = writable({
 	crop: 'SHAPE',
 	icon: '/favicon.png',

@@ -31,3 +31,26 @@ export async function GET({ url }) {
 		return json({ error: 'server parameter is required' });
 	}
 }
+
+export async function POST({request}) {
+	let body = await request.json();
+	let server = body.server;
+	let authorization = body.authorization;
+	let samples = body.samples;
+
+	let response = await fetch(`${server}/brapi/v2/germplasm`, {
+		headers: {
+			Authorization: 'Basic ' + authorization
+		}
+	});
+	let data = await response.json();
+	let germplasmList = data.result.data.map((/** @type {{ germplasmDbId: string; }} */ germplasm) => germplasm.germplasmDbId);
+
+	let result = germplasmList.filter((/** @type {string} */ germplasm) => {
+		return samples.some((/** @type {string} */ sample) => {
+			return sample.endsWith(germplasm.replace(/ BRG$/, '').replace(/ /g, '_'));
+		});
+	});
+
+	return json(result)
+}
