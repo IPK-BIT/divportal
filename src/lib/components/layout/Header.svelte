@@ -4,13 +4,13 @@
 	import { appConfig } from '$lib/stores/appconfig';
 </script>
 
-<header>
+<header class="z-10">
 	<nav class="bg-gradient-to-r from-accent to-neutral text-[oklch(var(--nc))] p-2">
 		<div class="containe</nav>r flex items-center justify-between min-w-full">
 			<!-- Logo container -->
 			<div class="flex space-x-4 p-2 rounded bg-slate-100">
 				<img class="h-8" src={$appConfig.icon} alt="logo" />
-				<div class="text-xl font-bold text-slate-700">{$appConfig.crop} - Divportal</div>
+				<div class="text-xl font-bold text-slate-700">{$appConfig.crop} - DivPortal</div>
 			</div>
 			<!-- Navigation container -->
 			<div class="flex justify-end mr-4">
