@@ -13,7 +13,7 @@
 </script>
 
 <div class="p-8">
-	<section class="mb-6">
+	<!-- <section class="mb-6">
 		<div class="divider divider-neutral text-lg font-semibold select-none">
 			Connection Parameters
 		</div>
@@ -29,7 +29,7 @@
 				</tr>
 			</tbody>
 		</table>
-	</section>
+	</section> -->
 
 	<section class="mb-6">
 		<div class="divider divider-neutral text-lg font-semibold select-none">Germplasm Selection</div>
@@ -51,10 +51,6 @@
 					<th>Observation Variable</th>
 					<td>{$params.variable}</td>
 				</tr>
-				<tr>
-					<th>Include Outliers</th>
-					<td>{$params.includeOutliers}</td>
-				</tr>
 			</tbody>
 		</table>
 	</section>
@@ -69,15 +65,15 @@
 				</tr>
 				<tr>
 					<th>Filter MAF</th>
-					<td>{$params.filterMAF}</td>
+					<td>{$params.minAlleleFreq}</td>
 				</tr>
 				<tr>
 					<th>Filter Heterozygosity</th>
-					<td>{$params.filterHeterozygous}</td>
+					<td>{$params.includeHeterozygous}</td>
 				</tr>
 				<tr>
 					<th>Filter Missing Data</th>
-					<td>{$params.filterMissing}</td>
+					<td>{$params.missingData}</td>
 				</tr>
 			</tbody>
 		</table>

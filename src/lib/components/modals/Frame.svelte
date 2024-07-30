@@ -9,6 +9,7 @@
 	import GenotypeFilter from './gwas/GenotypeFilter.svelte';
 	import ParamOverview from './gwas/ParamOverview.svelte';
 	import Preset from './list/Preset.svelte';
+	import WorkflowOverview from './gwas/WorkflowOverview.svelte';
 
 	export let steps;
 	export let finishBtnText = 'Finish';
@@ -22,6 +23,7 @@
 	const components = {
 		basic: BasicInformation,
 		upload: Upload,
+		wfoverview: WorkflowOverview,
 		germplasm: GermplasmSelection,
 		phenotype: PhenotypeFilter,
 		genotype: GenotypeFilter,

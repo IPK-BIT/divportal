@@ -1,27 +1,22 @@
 <script>
-	import VariableDisplay from '$lib/components/variables/VariableDisplay.svelte';
-	import { onMount } from 'svelte';
-	import { api, updateCreds } from '$lib/stores/apiconfig';
-	/**
-	 * @type {any[]}
-	 */
-	let variables = [];
-	/**
-	 * @type {string[]}
-	 */
-	let traitClasses = [];
+	import { api, updateCreds } from "$lib/stores/apiconfig";
+	import { onMount } from "svelte";
+
+	let variableDisplay;
 	onMount(async () => {
 		await updateCreds();
-
-		const queryParams = new URLSearchParams({
-			server: $api.base_url,
-			authorization: $api.basic_auth ? $api.basic_auth : ''
-		});
-		const response = await fetch(`/variables?${queryParams.toString()}`);
-		const data = await response.json();
-		variables = data.result.data;
-		traitClasses = [...new Set(variables.map((v) => v.trait.traitClass))];
-	});
+		console.log($api.basic_auth);
+		// @ts-ignore
+		variableDisplay = await window.variableDisplay.startApp('variableDisplay', {
+			config: {
+				server: {
+					baseUrl: $api.base_url,
+					brapiVersion: 'v2.1',
+					authorization: $api.basic_auth?`Basic ${$api.basic_auth}`:''
+				}
+			}			
+		});		
+	})
 </script>
 
 <div class="p-2">
@@ -43,5 +38,5 @@
 </div>
 
 <section class="p-4">
-	<VariableDisplay bind:variables bind:traitClasses />
+	<div id="variableDisplay"/>
 </section>

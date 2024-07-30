@@ -8,10 +8,14 @@ export async function GET({ url }) {
 		}
 		const response = await fetch(request_url, {
 			headers: {
-				Authorization: `Basic ${url.searchParams.get('authorization')}`
+				// @ts-ignore
+				Authorization: url.searchParams.get('authorization')?.length>0?`Basic ${url.searchParams.get('authorization')}`:'',
 			}
 		});
 		const data = await response.json();
+
+		console.log(request_url);
+		console.log(data);
 
 		/**
 		 * @type string[]

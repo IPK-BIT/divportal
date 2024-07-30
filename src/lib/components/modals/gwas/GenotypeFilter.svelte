@@ -1,19 +1,21 @@
 <script>
+// @ts-nocheck
+
 	import RadioSelect from '$lib/components/basic/forms/RadioSelect.svelte';
-	import { params } from '$lib/stores/gwas';
+	import { definition, params } from '$lib/stores/gwas';
 	import { onMount } from 'svelte';
 
 	export let config;
 
 	onMount(() => {
-		if ($params.filterMAF === '') {
-			$params.filterMAF = config.filterMAF;
+		if ($params.minAlleleFreq === '') {
+			$params.minAlleleFreq = $definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq').defaultValue;
 		}
-		if ($params.filterHeterozygous === '') {
-			$params.filterHeterozygous = config.filterHeterozygous;
+		if ($params.includeHeterozygous === '') {
+			$params.includeHeterozygous = $definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous').defaultValue;
 		}
-		if ($params.filterMissing === '') {
-			$params.filterMissing = config.filterMissing;
+		if ($params.missingData === '') {
+			$params.missingData = $definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData').defaultValue;
 		}
 		if ($params.vcf === '') {
 			$params.vcf = config.vcfFile;
@@ -33,31 +35,44 @@
 	</label>
 
 	<label class="block text-sm font-medium">
-		Minor Allele Frequency (MAF)
+		{$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq').parameterName}
 		<input
 			type="number"
-			step="0.01"
+			step="1"
 			class="w-full px-3 py-2 border rounded-md focus:outline-none text-base-200"
-			placeholder="5.00"
-			id="mafValue"
-			bind:value={$params.filterMAF}
+			placeholder={$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq').defaultValue}
+			min="0"
+			max="100"
+			id="minAlleleFreq"
+			bind:value={$params.minAlleleFreq}
 		/>
 	</label>
 
-	<RadioSelect
-		param={{ short: 'heterozygous', label: 'Filter Heterozygosity' }}
-		options={[
-			{ value: true, label: 'Yes' },
-			{ value: false, label: 'No' }
-		]}
-		bind:value={$params.filterHeterozygous}
-	/>
-	<RadioSelect
-		param={{ short: 'missing', label: 'Filter Missing Data' }}
-		options={[
-			{ value: true, label: 'Yes' },
-			{ value: false, label: 'No' }
-		]}
-		bind:value={$params.filterMissing}
-	/>
+	<label class="block text-sm font-medium">
+		{$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData').parameterName}
+		<input
+			type="number"
+			step="1"
+			class="w-full px-3 py-2 border rounded-md focus:outline-none text-base-200"
+			placeholder={$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData').defaultValue}
+			min="0"
+			max="100"
+			id="missingData"
+			bind:value={$params.missingData}
+		/>
+	</label>
+
+	<label class="block text-sm font-medium">
+		{$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous').parameterName}
+		<input
+			type="number"
+			step="1"
+			class="w-full px-3 py-2 border rounded-md focus:outline-none text-base-200"
+			placeholder={$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous').defaultValue}
+			min="0"
+			max="100"
+			id="includeHeterozygous"
+			bind:value={$params.includeHeterozygous}
+		/>
+	</label>
 </form>

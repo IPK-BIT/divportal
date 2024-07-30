@@ -18,7 +18,7 @@
 </script>
 
 <section class="flex flex-row">
-	<div class="bg-base-300 border border-neutral w-1/2 p-4">
+	<div class="bg-base-300 w-1/2 p-4">
 		<VariableTree bind:focussedItem {variables} {traitClasses} />
 	</div>
 	<div class="bg-base-200 w-1/2">

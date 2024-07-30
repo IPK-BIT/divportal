@@ -74,6 +74,7 @@
 							class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 text-[oklch(var(--bc))]"
 						>
 							<li><a href="/analysis/gwas">GWAS</a></li>
+							<li class="border-t-2"><a href="/analysis/jobs">Jobs</a></li>
 						</ul>
 					</div>
 					<li class="hover:text-accent {$page.route.id === '/lists' ? 'text-accent' : ''}">

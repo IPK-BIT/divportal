@@ -14,6 +14,6 @@
 		$params.prefix = config.prefix;
 	}}
 />
-{#if $params.list}
+{#key $params.list}
 	<ListDetails listDbId={$params.list} />
-{/if}
+{/key}

@@ -1,20 +1,38 @@
 import { readable, writable } from 'svelte/store';
 
+export const config = readable({
+	baseURL: 'http://localhost:8000',
+	authorization: '',
+	procedureDbId: '9406d19d-91ae-4793-94ae-8b0a05f2306f'
+})
+
+export const definition = writable({procedureName: undefined, procedureDbId: undefined})
+
 export const steps = readable([
 	{
 		id: 1,
-		title: 'Select Germplasm',
+		title: 'Workflow Overview',
 		components: [
 			{
-				type: 'germplasm',
-				config: {
-					prefix: 'http://129.70.51.240/lists'
-				}
+				type: 'wfoverview',
+				config: {}
 			}
 		]
 	},
 	{
 		id: 2,
+		title: 'Select Germplasm',
+		components: [
+			{
+				type: 'germplasm',
+				config: {
+					prefix: 'https://divportal.ipk-gatersleben.de/lists'
+				}
+			}
+		]
+	},
+	{
+		id: 3,
 		title: 'Define Phenotype Filters',
 		components: [
 			{
@@ -26,22 +44,19 @@ export const steps = readable([
 		]
 	},
 	{
-		id: 3,
+		id: 4,
 		title: 'Define Genotype Filters',
 		components: [
 			{
 				type: 'genotype',
 				config: {
-					vcfFile: 's3://shape/bridge_core1000_renamed.vcf.gz',
-					filterMAF: 5.0,
-					filterMissing: true,
-					filterHeterozygous: true
+					vcfFile: 's3://shape/shape_core1000.vcf.gz'
 				}
 			}
 		]
 	},
 	{
-		id: 4,
+		id: 5,
 		title: 'Overview',
 		components: [
 			{
@@ -56,11 +71,10 @@ export const params = writable({
 	prefix: '',
 	list: '',
 	variable: '',
-	includeOutliers: '',
 	vcf: '',
-	filterMissing: '',
-	filterHeterozygous: '',
-	filterMAF: '',
+	missingData: '',
+	includeHeterozygous: '',
+	minAlleleFreq: '',
 	baseURL: '',
 	authorization: ''
 });
@@ -70,11 +84,10 @@ export function reset() {
 		prefix: '',
 		list: '',
 		variable: '',
-		includeOutliers: '',
 		vcf: '',
-		filterMissing: '',
-		filterHeterozygous: '',
-		filterMAF: '',
+		missingData: '',
+		includeHeterozygous: '',
+		minAlleleFreq: '',
 		baseURL: '',
 		authorization: ''
 	});
