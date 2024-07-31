@@ -7,13 +7,29 @@
 	 */
 	let jobs = [];
 
+	let autoRefresh = false;
+
 	onMount(async () => {
 		const response = await fetch(`https://divportal.ipk-gatersleben.de/brapi/v2/jobs`);
 		jobs = (await response.json()).result.data;
 	});
+
+	setInterval(async () => {
+		if (!autoRefresh) {
+			return;
+		}
+		const response = await fetch(`https://divportal.ipk-gatersleben.de/brapi/v2/jobs`);
+		jobs = (await response.json()).result.data;
+	}, 5000);
 </script>
 
 <section class="p-4">
+	<div class="flex justify-end">
+		<label class="label space-x-1">
+			<span class="label-text">Auto Refresh</span>
+			<input bind:checked={autoRefresh} type="checkbox" class="toggle {autoRefresh?"toggle-primary":""}" />
+		</label>
+	</div>	
 	<table class="table">
 		<thead>
 			<th>Job Name</th>
