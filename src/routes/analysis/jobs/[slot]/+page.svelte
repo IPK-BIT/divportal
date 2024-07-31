@@ -79,6 +79,27 @@
 		a.click();
 		window.URL.revokeObjectURL(url);
 	}
+
+	async function downloadArchive() {
+		let response = await fetch(
+			'https://divportal.ipk-gatersleben.de/api/v1/files/archive',
+			{
+				method: 'POST',
+				body: JSON.stringify({
+					bucket: 'shape',
+					jobDbId: slot
+				})
+			}
+		);
+
+		const blob = await response.blob();
+		const url = window.URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = `${slot}.zip`;
+		a.click();
+		window.URL.revokeObjectURL(url);
+	}
 </script>
 
 <div class="breadcrumbs text-sm px-4 pt-2">
@@ -141,7 +162,7 @@
 			<h1 class="text-2xl font-semibold pt-4 px-4">Download Results</h1>
 			<div class="p-4 bg-base-100 m-4 rounded-lg">
 				{#if files.length > 0}
-					<button class="btn btn-sm float-end">Download as Zip <Zip /></button>
+					<button class="btn btn-sm float-end" on:click={downloadArchive}>Download as Zip <Zip /></button>
 				{/if}
 				<ul>
 					{#each files as file}
