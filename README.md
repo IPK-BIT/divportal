@@ -1,38 +1,37 @@
-# create-svelte
+# DivPortal
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+## About DivPortal
 
-## Creating a project
+DivPortal is a web application for the interactive visualization and exploration of plant phenotyping trials. 
 
-If you're seeing this, you've probably already done this step. Congrats!
+As data backend it uses a BrAPI server, visualizing its trial results and general information about the available germplasm. Additionaly it allows to start analysis workflows on this data by integrating a brokering service between workflow managers and the connected BrAPI server. 
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Installation
 
-# create a new project in my-app
-npm create svelte@latest my-app
+Information on how to install DivPortal is given in the documentation. In general DivPortal offers a ```docker-compose.yml``` that allows deployment of the instance.
+
+```
+docker compose up --build -d
 ```
 
-## Developing
+## Try out DivPortal
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+A demo instance is available at https://divportal.ipk-gatersleben.de
 
-```bash
-npm run dev
+## Architecture
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```mermaid
+flowchart LR
+    user((User))
+    p0[(BrAPI Server)]
+    p1[[BrOKER]]
+    p2[DivPortal]
+    p3[Workflow Manager]
+
+    p0-->p2
+    p2<-->p1
+    p0-->p1
+    p1<-->p3
+
+    user-.->p2
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.

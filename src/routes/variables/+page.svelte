@@ -5,7 +5,6 @@
 	let variableDisplay;
 	onMount(async () => {
 		await updateCreds();
-		console.log($api.basic_auth);
 		// @ts-ignore
 		variableDisplay = await window.variableDisplay.startApp('variableDisplay', {
 			config: {
