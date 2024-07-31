@@ -7,7 +7,7 @@ import { cssColor_to_rgba255Color } from './colorconversion';
  * @param {string} selectedList
  * @param {string} includeOutliers
  */
-export async function loadPlot(selectedVariable, selectedList, includeOutliers='true') {
+export async function loadPlot(selectedVariable, selectedList, includeOutliers = 'true') {
 	const style = getComputedStyle(document.documentElement);
 	let colorValue = style.getPropertyValue('--bc');
 	const rgb = await cssColor_to_rgba255Color(`lch(${colorValue})`);

@@ -3,7 +3,6 @@
 	import VariableSelect from '$lib/components/variables/VariableSelect.svelte';
 	import { loadPlot } from '$lib/scripts/plot';
 
-
 	/**
 	 * @type {string}
 	 */

@@ -32,7 +32,7 @@ export async function GET({ url }) {
 	}
 }
 
-export async function POST({request}) {
+export async function POST({ request }) {
 	let body = await request.json();
 	let server = body.server;
 	let authorization = body.authorization;
@@ -44,7 +44,9 @@ export async function POST({request}) {
 		}
 	});
 	let data = await response.json();
-	let germplasmList = data.result.data.map((/** @type {{ germplasmDbId: string; }} */ germplasm) => germplasm.germplasmDbId);
+	let germplasmList = data.result.data.map(
+		(/** @type {{ germplasmDbId: string; }} */ germplasm) => germplasm.germplasmDbId
+	);
 
 	let result = germplasmList.filter((/** @type {string} */ germplasm) => {
 		return samples.some((/** @type {string} */ sample) => {
@@ -52,5 +54,5 @@ export async function POST({request}) {
 		});
 	});
 
-	return json(result)
+	return json(result);
 }

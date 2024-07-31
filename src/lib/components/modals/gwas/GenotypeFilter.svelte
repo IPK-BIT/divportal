@@ -1,5 +1,5 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
 
 	import RadioSelect from '$lib/components/basic/forms/RadioSelect.svelte';
 	import { definition, params } from '$lib/stores/gwas';
@@ -9,13 +9,19 @@
 
 	onMount(() => {
 		if ($params.minAlleleFreq === '') {
-			$params.minAlleleFreq = $definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq').defaultValue;
+			$params.minAlleleFreq = $definition.controlParameters.find(
+				(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq'
+			).defaultValue;
 		}
 		if ($params.includeHeterozygous === '') {
-			$params.includeHeterozygous = $definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous').defaultValue;
+			$params.includeHeterozygous = $definition.controlParameters.find(
+				(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous'
+			).defaultValue;
 		}
 		if ($params.missingData === '') {
-			$params.missingData = $definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData').defaultValue;
+			$params.missingData = $definition.controlParameters.find(
+				(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData'
+			).defaultValue;
 		}
 		if ($params.vcf === '') {
 			$params.vcf = config.vcfFile;
@@ -35,12 +41,16 @@
 	</label>
 
 	<label class="block text-sm font-medium">
-		{$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq').parameterName}
+		{$definition.controlParameters.find(
+			(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq'
+		).parameterName}
 		<input
 			type="number"
 			step="1"
 			class="w-full px-3 py-2 border rounded-md focus:outline-none text-base-200"
-			placeholder={$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq').defaultValue}
+			placeholder={$definition.controlParameters.find(
+				(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'minAlleleFreq'
+			).defaultValue}
 			min="0"
 			max="100"
 			id="minAlleleFreq"
@@ -49,12 +59,16 @@
 	</label>
 
 	<label class="block text-sm font-medium">
-		{$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData').parameterName}
+		{$definition.controlParameters.find(
+			(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData'
+		).parameterName}
 		<input
 			type="number"
 			step="1"
 			class="w-full px-3 py-2 border rounded-md focus:outline-none text-base-200"
-			placeholder={$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData').defaultValue}
+			placeholder={$definition.controlParameters.find(
+				(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'missingData'
+			).defaultValue}
 			min="0"
 			max="100"
 			id="missingData"
@@ -63,12 +77,16 @@
 	</label>
 
 	<label class="block text-sm font-medium">
-		{$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous').parameterName}
+		{$definition.controlParameters.find(
+			(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous'
+		).parameterName}
 		<input
 			type="number"
 			step="1"
 			class="w-full px-3 py-2 border rounded-md focus:outline-none text-base-200"
-			placeholder={$definition.controlParameters.find((/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous').defaultValue}
+			placeholder={$definition.controlParameters.find(
+				(/** @type {{ parameterId: string; }} */ p) => p.parameterId === 'includeHeterozygous'
+			).defaultValue}
 			min="0"
 			max="100"
 			id="includeHeterozygous"

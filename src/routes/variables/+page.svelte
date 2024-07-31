@@ -1,6 +1,6 @@
 <script>
-	import { api, updateCreds } from "$lib/stores/apiconfig";
-	import { onMount } from "svelte";
+	import { api, updateCreds } from '$lib/stores/apiconfig';
+	import { onMount } from 'svelte';
 
 	let variableDisplay;
 	onMount(async () => {
@@ -12,11 +12,11 @@
 				server: {
 					baseUrl: $api.base_url,
 					brapiVersion: 'v2.1',
-					authorization: $api.basic_auth?`Basic ${$api.basic_auth}`:''
+					authorization: $api.basic_auth ? `Basic ${$api.basic_auth}` : ''
 				}
-			}			
-		});		
-	})
+			}
+		});
+	});
 </script>
 
 <div class="p-2">
@@ -38,5 +38,5 @@
 </div>
 
 <section class="p-4">
-	<div id="variableDisplay"/>
+	<div id="variableDisplay" />
 </section>

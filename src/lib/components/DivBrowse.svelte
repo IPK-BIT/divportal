@@ -28,10 +28,10 @@
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ 
+			body: JSON.stringify({
 				samples: selectedSamples,
 				server: $api.base_url,
-				authorization: $api.basic_auth ? $api.basic_auth : '' 
+				authorization: $api.basic_auth ? $api.basic_auth : ''
 			})
 		});
 		const data = await response.json();
@@ -79,16 +79,15 @@
 <div class="relative w-full">
 	<div id="divbrowse" />
 	<div class="absolute flex justify-between transform -translate-y-0 right-5 top-3">
-		<button 
-			disabled={$selection.length===0}
+		<button
+			disabled={$selection.length === 0}
 			class="btn btn-sm rounded-none bg-neutral-200 text-black hover:bg-neutral-200 shadow-md"
 			on:click={() => customListModal && customListModal.showModal()}
 		>
 			Save Selection
 		</button>
-	</div>	
+	</div>
 </div>
-
 
 <Modal id="my_modal_1" title="DivBrowse List">
 	<Frame

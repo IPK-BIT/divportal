@@ -5,7 +5,10 @@ export async function GET({ url }) {
 		const response = await fetch(`${url.searchParams.get('server')}/brapi/v2/studies`, {
 			headers: {
 				// @ts-ignore
-				Authorization: url.searchParams.get('authorization')?.length>0?`Basic ${url.searchParams.get('authorization')}`:'',
+				Authorization:
+					url.searchParams.get('authorization')?.length > 0
+						? `Basic ${url.searchParams.get('authorization')}`
+						: ''
 			}
 		});
 		const data = await response.json();

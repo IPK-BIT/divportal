@@ -8,7 +8,10 @@ export async function GET({ url }) {
 			`${url.searchParams.get('server')}/brapi/v2/variables?observationVariableDbId=${url.searchParams.get('variable')}`,
 			{
 				headers: {
-					Authorization: url.searchParams.get('authorization')?.length>0?`Basic ${url.searchParams.get('authorization')}`:'',
+					Authorization:
+						url.searchParams.get('authorization')?.length > 0
+							? `Basic ${url.searchParams.get('authorization')}`
+							: ''
 				}
 			}
 		)
@@ -93,7 +96,7 @@ async function ordinalScale(
 	try {
 		const response = await fetch(request_url, {
 			headers: {
-				Authorization: authorization?`Basic ${authorization}`:''
+				Authorization: authorization ? `Basic ${authorization}` : ''
 			}
 		});
 		const data = await response.json();
@@ -189,7 +192,7 @@ async function nominalScale(
 	try {
 		const response = await fetch(request_url, {
 			headers: {
-				Authorization: authorization?`Basic ${authorization}`:''
+				Authorization: authorization ? `Basic ${authorization}` : ''
 			}
 		});
 		const data = await response.json();
@@ -295,7 +298,7 @@ async function numericalScale(
 	try {
 		const response = await fetch(request_url, {
 			headers: {
-				Authorization: authorization?`Basic ${authorization}`:''
+				Authorization: authorization ? `Basic ${authorization}` : ''
 			}
 		});
 		const data = await response.json();

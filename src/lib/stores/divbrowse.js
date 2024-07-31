@@ -1,4 +1,4 @@
-import { readable, writable } from "svelte/store";
+import { readable, writable } from 'svelte/store';
 
 export const selection = writable([]);
 

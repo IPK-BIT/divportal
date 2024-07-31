@@ -4,9 +4,9 @@ export const config = readable({
 	baseURL: 'http://localhost:8000',
 	authorization: '',
 	procedureDbId: '9406d19d-91ae-4793-94ae-8b0a05f2306f'
-})
+});
 
-export const definition = writable({procedureName: undefined, procedureDbId: undefined})
+export const definition = writable({ procedureName: undefined, procedureDbId: undefined });
 
 export const steps = readable([
 	{
