@@ -21,7 +21,7 @@
 			type="text"
 			name="collectionName"
 			placeholder="Enter Collection Name"
-			class="mt-1 block w-full rounded-md sm:text-sm p-2 text-base-200"
+			class="mt-1 block w-full rounded-md sm:text-sm p-2"
 			bind:value={$list.name}
 		/>
 	</div>
@@ -31,7 +31,7 @@
 			id="description"
 			name="description"
 			rows="4"
-			class="mt-1 block w-full rounded-md shadow-sm sm:text-sm p-2 text-base-200"
+			class="mt-1 block w-full rounded-md shadow-sm sm:text-sm p-2"
 			bind:value={$list.description}
 		></textarea>
 	</div>

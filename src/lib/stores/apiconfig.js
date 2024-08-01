@@ -8,7 +8,6 @@ export const api = writable({
 export async function updateCreds() {
 	const response = await fetch(`/settings/auth?server=${get(api).base_url}`);
 	const data = await response.json();
-	console.log(data);
 	api.update((api) => {
 		try {
 			if (data[0] && data[0].method === 'basic') {

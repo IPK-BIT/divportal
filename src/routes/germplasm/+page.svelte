@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { api, updateCreds } from '$lib/stores/apiconfig';
 	import Table from '$lib/components/basic/Table.svelte';
+	import { goto } from '$app/navigation';
 
 	/**
 	 * @type {{ rows: (string|number)[]; columns: string[], pagination: {totalPages: number, currentPage: number}} | undefined}
@@ -23,6 +24,8 @@
 		await updateCreds();
 		loadTable();
 	});
+
+	let clickRow = (/** @type {any} */ row)=>{goto('/germplasm/'+row['germplasm'])}
 </script>
 
-<Table bind:table on:loadTable={loadTable} />
+<Table bind:table on:loadTable={loadTable} bind:rowClickHandler={clickRow}/>

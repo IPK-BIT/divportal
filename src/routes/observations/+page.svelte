@@ -58,5 +58,5 @@
 			<option value={study.studyDbId}>{study.studyName}</option>
 		{/each}
 	</select>
-	<Table bind:table on:loadTable={loadTable} />
+	<Table bind:table on:loadTable={loadTable} rowClickHandler={null}/>
 </section>

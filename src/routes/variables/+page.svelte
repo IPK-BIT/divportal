@@ -2,11 +2,11 @@
 	import { api, updateCreds } from '$lib/stores/apiconfig';
 	import { onMount } from 'svelte';
 
-	let variableDisplay;
+	let breview;
 	onMount(async () => {
 		await updateCreds();
 		// @ts-ignore
-		variableDisplay = await window.variableDisplay.startApp('variableDisplay', {
+		breview = await window.breview.startApp('breview', {
 			config: {
 				server: {
 					baseUrl: $api.base_url,
@@ -37,5 +37,5 @@
 </div>
 
 <section class="p-4">
-	<div id="variableDisplay" />
+	<div id="breview" />
 </section>
