@@ -50,7 +50,7 @@ export const steps = readable([
 			{
 				type: 'genotype',
 				config: {
-					vcfFile: 's3://shape/shape_core1000.vcf.gz'
+					vcfFile: 's3://shape/core1000_WGS_shapeII_unimputed_biallelic_snps_renamed.vcf.gz'
 				}
 			}
 		]

@@ -162,7 +162,7 @@
 	<div class="-z-10 w-64 h-20 bg-white border" style="transform: translateX(-80px) rotate(-45deg);">
 		<figure class="flex flex-col items-center" style="transform: translateY(10px)">
 			<img src="/Clowmsvg.svg" alt="clowm" class="w-8 h-8" />
-			<a class="link text-black" target="_blank" href="https://clowm-staging.bi.denbi.de/"
+			<a class="link text-black" target="_blank" href="https://clowm.de/"
 				>Powered by CloWM</a
 			>
 		</figure>
