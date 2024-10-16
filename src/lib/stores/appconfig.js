@@ -1,5 +1,7 @@
 import { get, writable } from 'svelte/store';
 
+export const token = writable('');
+
 //TODO: Restructure to be buildable by yamlscript
 export const appConfig = writable({
 	crop: 'SHAPE',

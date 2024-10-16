@@ -1,7 +1,8 @@
 <script>
-	import { Settings } from 'carbon-icons-svelte';
+	import { Settings, UserAvatar } from 'carbon-icons-svelte';
 	import { page } from '$app/stores';
-	import { appConfig } from '$lib/stores/appconfig';
+	import { appConfig, token } from '$lib/stores/appconfig';
+	import { goto } from '$app/navigation';
 </script>
 
 <header class="z-10">
@@ -18,6 +19,7 @@
 					<li class="hover:text-accent {$page.route.id === '/' ? 'text-accent' : ''}">
 						<a href="/">Home</a>
 					</li>
+					{#if $token}
 					<div class="dropdown dropdown-end hover:text-accent">
 						<div
 							class={$page.route.id?.startsWith('/germplasm') ||
@@ -80,9 +82,31 @@
 					<li class="hover:text-accent {$page.route.id === '/lists' ? 'text-accent' : ''}">
 						<a href="/lists">Lists</a>
 					</li>
-					<li class="hover:text-accent {$page.route.id === '/settings' ? 'text-accent' : ''}">
-						<a href="/settings"><Settings size={20} /></a>
-					</li>
+					{/if}
+					<div class="dropdown dropdown-end hover:text-accent">
+						<div
+							class={$page.route.id?.startsWith('/settings') ? 'text-accent' : ''}
+							tabindex="0"
+							role="button"
+						>
+							<UserAvatar size={20} />
+						</div>
+						<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+						<ul
+							tabindex="0"
+							class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 text-[oklch(var(--bc))]"
+						>
+							{#if $token}
+							<li><a class="btn btn-ghost btn-sm" href="/settings"><Settings size={20} /> Settings</a></li>
+							<li><button class="btn btn-ghost btn-sm" on:click={()=>{$token=''; localStorage.setItem('token', ''); goto('/')}}>Logout</button></li>
+							{:else}
+							<li><a class="btn btn-ghost btn-sm" href="/aai/login">Login</a></li>
+							{/if}
+						</ul>
+					</div>
+					<!-- <li class="hover:text-accent {$page.route.id === '/settings' ? 'text-accent' : ''}">
+						<a href="/settings"><Settings size={20} /> </a>
+					</li> -->
 				</ul>
 			</div>
 		</div>
